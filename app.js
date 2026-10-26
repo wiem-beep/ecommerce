@@ -3,9 +3,11 @@ const app=express()
 const dotenv =require("dotenv")
 const mongoose =require("mongoose")
 dotenv.config()
+app.use(express.json())  //format json
 
+const categorieRouter=require("./routes/categorie.route.js")
 // Connexion à la base données
-mongoose.connect(process.env.databaselocal)
+mongoose.connect(process.env.databasecloud)
 .then(() => {console.log("DataBase Successfully Connected");}) // si oui 
 .catch(err => { console.log("Unable to connect to database", err);// si non
 process.exit(); });
@@ -17,4 +19,12 @@ app.get("/contact",(req,res)=>{ // localhost:3001/contact
     res.send("bienvenue a la page  contact")
 })
 
-app.listen(process.env.PORT) // pour dire qui le port 3001 qui utilise
+app.use('/api/categories', categorieRouter)
+
+app.listen(process.env.PORT, () => {
+console.log(`Server is listening on port ${process.env.PORT}`); });
+
+module.exports = app;// github
+
+    
+// pour dire qui le port 3001 qui l'utilise
