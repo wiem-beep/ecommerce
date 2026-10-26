@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+
+// Importer le modèle Categorie
+const Categorie = require('../models/categorie');
+
 // Créer une instance de categorie.
 router.post('/', async (req, res) => {
 const { nomcategorie, imagecategorie} = req.body;
