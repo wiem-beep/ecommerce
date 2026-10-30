@@ -5,6 +5,8 @@ var router = express.Router();
 // Importer le modèle Categorie
 const Categorie = require('../models/categorie');
 
+
+
 // Créer une instance de categorie.
 router.post('/', async (req, res) => {
 const { nomcategorie, imagecategorie} = req.body;
@@ -17,6 +19,9 @@ res.status(200).json(newCategorie );
 res.status(404).json({ message: error.message });
 }
 });
+
+
+
 // afficher la liste des categories.
 router.get('/', async (req, res )=> {
 try {
@@ -28,6 +33,9 @@ res.status(404).json({ message: error.message });
 }
 
 });
+
+
+
 // créer un nouvelle catégorie
 router.post('/', async (req, res) => { // const newCategorie = new Categorie(req.body)hedhi f blasit  
     const { nomcategorie, imagecategorie} = req.body;
@@ -41,6 +49,7 @@ imagecategorie:imagecategorie})
 }
 });
 
+
 // chercher une catégorie
 router.get('/:categorieId',async(req, res)=>{
  try {
@@ -53,6 +62,8 @@ res.status(404).json({ message: error.message });
 }
 
 });
+
+
 // modifier une catégorie
 router.put('/:categorieId', async (req, res)=> {
 
@@ -67,6 +78,8 @@ res.status(200).json(cat1);
 res.status(404).json({ message: error.message });
 }
 });
+
+
 // Supprimer une catégorie
 router.delete('/:categorieId', async (req, res)=> {
 
